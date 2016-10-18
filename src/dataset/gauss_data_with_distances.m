@@ -2,9 +2,9 @@ clc;
 clear all;
 close all;
 
-nBags = 200;
-nInst = 4;
-nPostInstMax = 1;
+nBags = 1000;
+nInst = 10;
+nPostInstMax = 2;
 bag{nBags}=[];
 
 for i=1:floor(nBags/2) % positive bags
@@ -39,7 +39,7 @@ hold on;
 plot(accu(floor(nBags/2)*nInst + 1:nBags*nInst,1),accu(floor(nBags/2)*nInst + 1:nBags*nInst,2),'o','color',[0 0 1],'MarkerSize',6);
 hold on;
 
-D = pdist2(accu,accu); 
+D = exp(-1.*pdist2(accu,accu)); 
 
 clearvars -except bag labels nPostInstMax D;
 save synth_data.mat;
